@@ -1,19 +1,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Registrar</title>
+    <title>Atualizar Perfil</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 
 {% block body %}
+
+{% if request.user.is_authenticated %}
 <body>
     <section class="hero is-primary is-fullheight">
         <div class="hero-body">
             <div class="container">
                 <div class="columns is-centered">
                     <div class="column is-half">
-                        <form name="form-users" id="formUsers" action="/docad/" method="post">
+                        <form name="form-perfil" id="formChanging" action="/dochanging/" method="post">
 
                                 {% if msg %}
 
@@ -27,22 +29,30 @@
                                 {% endif %}
 
                                 <br> <br>
-
                                 {% csrf_token %}
-                                <div class="field">
-                                    <label class="label">Usuário</label>
-                                    <p class="control has-icons-left has-icons-right">
-                                      <input class="input" type="text" name="usuario" id="usuario" placeholder="Insira um usuario">
-                                      <span class="icon is-small is-left">
-                                        <i class="fas fa-user"></i>
-                                      </span>
-                                        <span class="icon is-small is-right">
-                                        <i class="fas fa-check"></i>
+
+                                  <div class="field">
+                                    <label class="label">Senha Anterior:</label>
+                                    <p class="control has-icons-left">
+                                        <input class="input" type="password" name="confirmar-senha" id="confirmar-senha" placeholder="Senha">
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-lock"></i>
                                         </span>
                                     </p>
                                   </div>
+
                                   <div class="field">
-                                    <label class="label">Nome</label>
+                                    <label class="label">Nova Senha:</label>
+                                    <p class="control has-icons-left">
+                                        <input class="input" type="password" name="senha" id="senha" placeholder="Senha">
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-lock"></i>
+                                        </span>
+                                    </p>
+                                  </div>
+
+                                  <div class="field">
+                                    <label class="label">Nome: {{ user.first_name }} </label>
                                     <p class="control has-icons-left has-icons-right">
                                       <input class="input" type="text" name="nome" id="nome" placeholder="Insira um Nome">
                                       <span class="icon is-small is-left">
@@ -53,10 +63,11 @@
                                         </span>
                                     </p>
                                   </div>
+
                                   <div class="field">
-                                    <label class="label">Email</label>
+                                    <label class="label">Email: {{ user.email }} </label>
                                     <p class="control has-icons-left has-icons-right">
-                                      <input class="input" type="text" name="email" id="email" placeholder="Insira um Email">
+                                      <input class="input" type="text" name="email" id="email" placeholder="Atualize um Email">
                                       <span class="icon is-small is-left">
                                         <i class="fas fa-user"></i>
                                       </span>
@@ -66,29 +77,9 @@
                                     </p>
                                   </div>
                                 <div class="field">
-                                    <label class="label">Senha</label>
-                                    <p class="control has-icons-left">
-                                        <input class="input" type="password" name="senha" id="senha" placeholder="Senha">
-                                        <span class="icon is-small is-left">
-                                            <i class="fas fa-lock"></i>
-                                        </span>
-                                    </p>
-                                </div>
-                                <div class="field">
-                                    <label class="label">Confirmar Senha</label>
-                                    <p class="control has-icons-left">
-                                        <input class="input" type="password" name="confirmarsenha" id="confirmarsenha" placeholder="Confirme sua Senha">
-                                        <span class="icon is-small is-left">
-                                            <i class="fas fa-lock"></i>
-                                        </span>
-                                    </p>
-                                </div>
-                                <div class="field">
                                     <p class="control">
-                                        <button type="submit" class="button is-link is-hovered">
-                                            Cadastrar
-                                        </button>
-                                        <a type="button" class="button is-danger is-hovered" href="/login"> Login </a>
+                                        <button type="submit" class="button is-link is-hovered"> Atualizar </button>
+                                        <a type="button" class="button is-danger is-hovered" href="dashboard/home"> Pagina Inicial </a>
                                     </p>
                                 </div>
                             </div>
@@ -99,4 +90,5 @@
         </div>
     </section>
 </body>
+{% endif %}
 {% endblock %}

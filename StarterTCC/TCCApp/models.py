@@ -5,5 +5,4 @@ from django.db import models
 class Users(models.Model):
     usuario = models.CharField(max_length=16)
     senha = models.CharField(max_length=16)
-    nome = models.CharField(max_length=16)
-    ultimo_nome = models.CharField(max_length=16)
+    email = models.CharField(max_length=256)

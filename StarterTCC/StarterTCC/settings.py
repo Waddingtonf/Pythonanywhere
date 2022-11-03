@@ -26,12 +26,15 @@ SECRET_KEY = 'django-insecure-a6dalfjw7&1s6qe$1=+8x0kt#k415w*n#7%(^n9v*0d$(9!l@*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'studio3dmockup.pythonanywhere.com',]
 
+DJANGO_SETTINGS_MODULE= 'StarterTCC.settings'
+
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
 
 # Application definition
 
-INSTALLED_APPS = [  
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -75,13 +78,21 @@ WSGI_APPLICATION = 'StarterTCC.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'waddingtonf@gmail.com'
+EMAIL_HOST_PASSWORD = 'faitfhzczkctajzr'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'Studio3DMockup <noreply@studio3dmockup.com>'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sakila12',
-        'USER': 'root',
-        'PASSWORD': 'Senai2019,',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'NAME': 'Studio3DMockup$BDTCC',
+        'USER': 'Studio3DMockup',
+        'PASSWORD': '132489Ab',
+        'HOST': 'Studio3DMockup.mysql.pythonanywhere-services.com',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
 }
@@ -103,6 +114,12 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+]
+
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
 ]
 
 
