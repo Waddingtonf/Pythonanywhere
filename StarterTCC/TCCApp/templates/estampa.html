@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-
 {% load static %}
 
 <html lang="pt-br">
@@ -8,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Faz Contato! - Mockup 3D Studio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/estampa.css' %}" rel="stylesheet">
     <link rel="shortcut icon" href="https://imgur.com/VyXhQ3O.png" type="image/x-icon"/>
 </head>
+{% block body %}
 <body>
-    {% block body %}
         <nav id="headercomp">
             <ul id="headerprincipal">
                 <li id="logo_header" href='#'> <img src="https://i.imgur.com/t3YMYaE.png"> </li>
@@ -28,29 +26,8 @@
         </nav>
         <br>
         <div id="linha"></div>
-        <section id="chamada">
-            <div id="chamadatextogrande">
-                <p id="texto1">A  <span id="destaque"> MELHOR </span>   produção</p>
-                <p>de camisetas do país.</p>
-            </div>
-
-            <div id="chamadatextopequeno">
-                <p id="texto2"> Peça agora suas camisetas e vista </p>
-                <p id="texto21">seu evento do seu jeito</p>
-            </div>
-
-            <a id="a-button"href="{% url 'cadastro' %}"><button type="submit" href= "{% url 'cadastro' %}" id="botao2" > Monte sua Estampa </button><a/>
-
-        </section>
-    </section>
-    </section>
-    {% endblock %}
+        <main>
+        </main>
 </body>
+{% endblock %}
 </html>
-
-<script>
-    window.rwbp={email:'waddingtonf@outlook.com',phone:'+55 84986282906',message:'Olá, Faça seu Orçamento! ',lang:'pt-BR'}
-</script>
-
-<script defer async src='https://duz4dqsaqembt.cloudfront.net/client/whats.js'>
-</script>

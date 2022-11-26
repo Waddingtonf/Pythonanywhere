@@ -1,0 +1,87 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products Page</title>
+    <link rel="preconnect" href= "https://fonts.googleapis.com">
+    <link rel="preconnect" href= "https://fonts.gstatic.com" crossorigin>
+    <link href="http://fonts.googleapis.com/css2?family=kumbh+Sans:wght@400;700&display=swap" rel="ylesheet">
+    <link href="style.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <nav id="headercomp">
+        <ul id="headerprincipal">
+            <li id="logo_header" href='#'> <img src="https://i.imgur.com/t3YMYaE.png"> </li>
+            <li id="produtos" href="{ % url 'produtospage' % }"> Produtos </li>
+            <li id="servicos" href="#"> Serviços </li>
+            <li id="estampa" href="#"> Monte Sua Estampa </li>
+            <li id="contato" href="#"> <a href="https://wa.me/5584986282906"></a> Faz Contato! </li>
+        </ul>
+    </nav>
+
+<main>
+    <section>
+        <div   class="container">
+            <div class="left-side">
+                <div class="select-imge">
+                    <img src="imagens/camisa_sima.JEPG.jpg">
+                </div>
+
+                <div class="thumbnails">
+                    <div class="thumbnail">
+                        <img src="imagens/camisa_frente.jpg"> <!-- 1-->
+                    </div>
+
+                    <div class="thumbnail">
+                        <img src="imagens/tras.cima.jpg">
+                    </div>
+
+                    <div class="thumbnail">
+                        <img src="imagens/camisa_frente.JEPG.jpg">
+                    </div>
+
+                    <div class="thumbnail">
+                        <img src="imagens/principal.jpg">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="right-side">
+                <div class="content">
+                    <h6>CAMISA DA SELEÇÃO BRASILEIRA</h6>
+                    <h1>Brasileira II 2022 Nike</h1>
+                    <p>Descrição do produto</p>
+                    <div class="prices">
+                        <span class="price">R$ 84,99</span>
+                        <span class="off">R$97,90</span>
+                    </div>
+                    <div class="options">
+
+                        <div class="amount">  <!--Botão de quantidade-->
+                            <div class="minus">
+                                <img src="Elementos/menos.png">
+                            </div>
+                            <span>0</span>
+                            <div class="plus">
+                                <img src="Elementos/mais.png">
+                            </div>
+                        </div>
+
+                        <a href="" class="button"><img src="Elementos/carrinho-carrinho.png">Adicione ao carrinho </a>
+                        <a href="" class="button2"><img src="Elementos/disco-rigido.png"> Inserir arquivo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+</html>
+

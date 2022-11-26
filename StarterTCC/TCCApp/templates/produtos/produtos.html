@@ -1,0 +1,86 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos</title>
+    <link rel="preconnect" href= "https://fonts.googleapis.com">
+    <link rel="preconnect" href= "https://fonts.gstatic.com" crossorigin>
+    <link href="http://fonts.googleapis.com/css2?family=kumbh+Sans:wght@400;700&display=swap" rel="ylesheet">
+    <link href="{% static 'css/produtos.css' %}" rel="stylesheet">
+
+</head>
+<body>
+
+    <nav id="headercomp">
+        <ul id="headerprincipal">
+            <li id="logo_header" href='#'> <img src="https://i.imgur.com/t3YMYaE.png"> </li>
+            <li id="produtos" href="/produtospage/"> Produtos </li>
+            <li id="servicos" href="#"> Serviços </li>
+            <li id="estampa" href="#"> Monte Sua Estampa </li>
+            <li id="contato" href="#"> Faz Contato! </li>
+        </ul>
+    </nav>
+
+<main>
+    <section>
+        <div class="container">
+            <div class="left-side">
+                <div class="select-imge">
+                    <img src="https://imgur.com/RW15f66.jpg">
+                </div>
+
+                <div class="thumbnails">
+                    <div class="thumbnail">
+                        <img src="https://imgur.com/rSYtMR9.jpg"> <!-- 1-->
+                    </div>
+
+                    <div class="thumbnail">
+                        <img src="https://imgur.com/L0gnKur.jpg">
+                    </div>
+
+                    <div class="thumbnail">
+                        <img src="https://imgur.com/L0gnKur.jpg">
+                    </div>
+
+                    <div class="thumbnail">
+                        <img src="https://imgur.com/zENDkwS.jpg">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="right-side">
+                <div class="content">
+                    <h6>CAMISA DA SELEÇÃO BRASILEIRA</h6>
+                    <h1>Brasileira II 2022 Nike</h1>
+                    <p>Descrição do produto</p>
+                    <div class="prices">
+                        <span class="price">R$ 84,99</span>
+                        <span class="off">R$97,90</span>
+                    </div>
+                    <div class="options">
+                        <div class="amount">  <!--Botão de quantidade-->
+                            <div class="minus">
+                                <a id="minus"><img src="https://imgur.com/JzDYn2E.png"></a>
+                            </div>
+                            <span id="">0</span>
+                            <div class="plus">
+                                <a id="plus"><img src="https://imgur.com/Itl1Kin.png"></a>
+                            </div>
+                        </div>
+
+                        <a href="" class="button"><img src="https://imgur.com/77eE2vU.png">Adicione ao carrinho </a>
+                        <a href="" class="button2"><img src="https://imgur.com/wHhejXw.png"> Inserir arquivo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+</html>
+

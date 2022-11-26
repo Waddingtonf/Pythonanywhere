@@ -6,7 +6,7 @@
 }
 
 body{
-    background-image: url("image/bg-site-v4.png");
+    background-image: url("https://i.imgur.com/DgjKvd7.png");
     background-repeat: repeat-y;
 }
 
@@ -158,104 +158,4 @@ header ul li{
 #contato a:link{
     color:#E2AC24;
     text-decoration: none;
-}
-
-#chamada p{
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 48px;
-    line-height: 59px;
-    color: white;
-    flex-direction: row;
-}
-
-#texto1{
-    flex-direction: row;
-    gap: 2rem
-}
-
-#chamadatextogrande{
-    justify-content: left;
-    align-items: left;
-    flex-direction: column;
-    margin-top: 15rem;
-    margin-left: 15rem;
-}
-
-#chamadatextopequeno p{
-    color: #F19334;
-    justify-content: left;
-    align-items: left;
-    flex-direction: column;
-    margin-left: 15rem;
-    font-weight: 600;
-    font-size: 36px;
-    line-height: 40px;
-    width: 665px;
-    height: 48px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-#texto2{
-    top: 25rem;
-    right: 10rem;
-    justify-content: left;
-    align-items: left;
-    flex-direction: row;
-    font-family: 'Montserrat';
-    font-style: normal;
-    bottom: 25rem;
-}
-
-#texto21{
-    top: 25rem;
-    right: 10rem;
-    justify-content: left;
-    align-items: left;
-    flex-direction: row;
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 36px;
-    line-height: 44px;
-    color: #E2AC24;
-}
-
-#destaque{
-    display: inline-block;
-    color: #E2AC24;
-    vertical-align: middle;
-    -webkit-transform: perspective(1px) translateZ(0);
-    transform: perspective(1px) translateZ(0);
-    box-shadow: 0 0 1px transparent;
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
-    -webkit-transition-property: box-shadow;
-    transition-property: box-shadow;
-}
-
-#destaque:hover, #destaque:focus, #destaque:active {
-    box-shadow: 0 0 8px #E2AC24;
-}
-
-#botao2{
-	padding: 10px;
-	width: 400px;
-    height: 50px;
-	border-radius: 50px;
-	border: none;
-	text-transform: uppercase;
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 28px;
-    line-height: 34px;
-    text-align: center;
-    color: #2F2325;
-	background-color: #E2AC24;
-	cursor: pointer;
-    box-shadow: 0 0 5px #000;
-    margin-top: 30px;
-    margin-left: 15rem;
 }

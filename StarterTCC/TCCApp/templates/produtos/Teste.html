@@ -1,0 +1,96 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{% static 'css/produto.css' %}" rel="stylesheet">
+
+</head>
+<body>
+    {% block body %}
+    <nav id="headercomp">
+        <ul id="headerprincipal">
+            <li id="logo_header" href='#'> <img src="https://i.imgur.com/t3YMYaE.png"> </li>
+            <li id="produtos"> <a href="/produtospage/"> Produtos </a></li>
+            <li id="servicos"> <a href="/servicos/"> Serviços </a></li>
+                {% if request.user.is_authenticated %}
+                <li id="estampa" href="#"> <a href="/estampa/"> Monte Sua Estampa </a></li>
+                {% else %}
+                <li id="estampa" href="#"> <a href="/upload/"> Monte Sua Estampa </a></li>
+                {% endif %}
+                <li id="contato" href="#"> <a href="https://wa.me/5584986282906"></a> Faz Contato! </li>
+        </ul>
+    </nav>
+    <br>
+    <div id='linha'></div>
+    <main>
+        <section>
+            <div   class="container">
+                <div class="left-side">
+                    <div class="select-imge">
+                        <img src="{% static 'css/imagens/camisa_sima.JEPG.jpg' %}">
+                    </div>
+
+                    <div class="thumbnails">
+                        <div class="thumbnail">
+                            <img src="{% static 'css/imagens/camisa_frente.jpg' %}"> <!-- 1-->
+                        </div>
+
+                        <div class="thumbnail">
+                            <img src=" {% static 'css/imagens/tras.cima.jpg' %} ">
+                        </div>
+
+                        <div class="thumbnail">
+                            <img src=" {% static 'css/imagens/camisa_frente.JEPG.jpg' %}">
+                        </div>
+
+                        <div class="thumbnail">
+                            <img src=" {% static 'css/imagens/principal.jpg' %}">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="right-side">
+                    <div class="content">
+                        <h6>CAMISA DA SELEÇÃO BRASILEIRA</h6>
+                        <h1>Brasileira II 2022 Nike</h1>
+                        <p>Descrição do produto</p>
+                        <div class="prices">
+                            <span class="price">R$ 84,99</span>
+                            <span class="off">R$97,90</span>
+                        </div>
+                        <div class="options">
+
+                            <div class="amount">  <!--Botão de quantidade-->
+                                <div class="minus">
+                                    <img src="{% static 'css/Elementos/menos.png'%}">
+                                </div>
+                                <span>0</span>
+                                <div class="plus">
+                                    <img src="{% static 'css/Elementos/mais.png'%}">
+                                </div>
+                            </div>
+
+                            <a href="" class="button"><img src="{% static 'css/Elementos/carrinho-carrinho.png' %}">Adicione ao carrinho </a>
+                            <a href="" class="button2"><img src="{% static 'css/Elementos/disco-rigido.png' %}"> Inserir arquivo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        {{ response.image }}
+    </footer>
+</body>
+    {% endblock %}
+</html>
+

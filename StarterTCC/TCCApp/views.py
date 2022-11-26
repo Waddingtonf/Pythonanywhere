@@ -13,69 +13,33 @@ from django.db.models.query_utils import Q
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
-from django.contrib import messages
-from TCCApp import *
-import hashlib
-import base64
-import binascii
+from TCCApp.forms import UploadForm
+from .models import Upload
 import os
 import requests
+import json
 import http.client
-
-
-# configurações de api
-
-conn = http.client.HTTPSConnection("api.mediamodifier.com")
-headers = { 'Content-Type': "application/json",
-            'api_key': "4cb1d7d9-36d3-45f7-837e-2dd1358081d0"
-        }
-
-# Request api gets
-def produtos(request):
-
-    conn.request("GET", "/mockups", headers=headers)
-
-    res = conn.getresponse()
-    data = res.read()
-    print(data)
-
-
-#Exemplo de testes
-
-def mockup(request):
-
-    payload = "{\n  \"nr\": 6323,\n  \"layer_inputs\": [\n    {\n      \"id\": \"f579b00b-9841-4d33-bcc7-d6dab6606998\",\n      \"data\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAocA...\",\n      \"crop\": {\n        \"x\": 0,\n        \"y\": 0,\n        \"width\": 647,\n        \"height\": 1400\n      },\n      \"checked\": true\n    },\n    {\n      \"id\": \"ea18e8f6-1e41-4a5e-bbe2-a469e2fea45d\",\n      \"checked\": true,\n      \"color\": {\n        \"red\": 254,\n        \"green\": 186,\n        \"blue\": 227\n      }\n    }\n  ]\n}"
-
-    conn.request("POST", "/mockup/render", payload, headers)
-
-    res = conn.getresponse()
-    data = res.read()
-
-#Pesquisa dos tipos de mockup
-
-def searchmockup(request):
-
-    if search.POST is None:
-        return render(request, 'searchmockup.html')
-
-    pesquisa = str(search.POST)
-    conn.request("GET", "/mockups/search?q=f{pesquisa}", headers=headers)
-
-    res = conn.getresponse()
-    data = res.read()
 
 
 # Create your views here.
 
+
+# Renderiza o template inicial
 def home(request):
 	return render(request,'main.html')
 
+# Retorna o Template de Produtos
+def produtospage(request):
+    return render(request, 'produtos/Teste.html')
+
+# Direcionador de Página de Cadastro
+
 def cadastro(request):
-    # Direcionador de Página de Cadastro
 #	data = {}
 #	data['form'] = UsersForm()
 	return render(request,'cadastro.html')
 
+# Realiza o cadastro dos usuários
 def docad(request):
     # Realizar Cadastro
     data = {}
@@ -97,9 +61,11 @@ def docad(request):
         data['class'] = 'is-success'
         return render(request,'cadastro.html', data)
 
+# Renderiza o Template Login
 def logar(request):
     return render(request,'login.html')
 
+# Realiza o Login
 def dologin(request):
     data = {}
     user = authenticate(username=request.POST['usuario'], password = request.POST['senha'])
@@ -112,12 +78,15 @@ def dologin(request):
         data['class'] = 'is-danger'
     return render(request,'login.html', data)
 
+# Retorna a tela principal com a indentificação do Usuário
 def dashboard(request):
     return render(request, 'dashboard/home.html')
 
+# Retorna a página para enviar dados para troca do Perfil
 def perfil(request):
     return render(request, 'dashboard/perfil.html')
 
+# Realiza mudança dos perfis logados!
 def dochanging(request):
     data = {}
 
@@ -159,16 +128,20 @@ def dochanging(request):
         else:
             return redirect('home')
 
+# Realiza o Logout
 def logouts(request):
     logout(request)
     return redirect('/home')
 
+# Renderizar para Envio de Email para Resetar Password
 def password_reset_request(request):
     if request.method == "POST":
         form_resetpassword = PasswordResetForm(request.POST)
+        # Verifica se foi clicado o reset de senha!
         if form_resetpassword.is_valid():
             data = form_resetpassword.cleaned_data['email']
             user_email = User.objects.filter(Q(email=data))
+            # Se o Email Existir no Banco de Dados Realiza Ação
             if user_email.exists():
                 for user in user_email:
                     subject = "Reset de Senha"
@@ -183,6 +156,7 @@ def password_reset_request(request):
                         }
 
                     email = render_to_string(email_template_name, parameters)
+                    # Envia a Requisição do Email
                     try:
                         send_mail(subject, email, '', [user.email], fail_silently=False)
                     except BadHeaderError:
@@ -197,6 +171,73 @@ def password_reset_request(request):
     }
 
     return render(request, "registration/password_reset.html", context)
+
+# Renderizar template com Forms de envio de Arquivo
+def upload(request):
+    context = {}
+    if request.method == "POST":
+        form = UploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            nome = form.cleaned_data.get('nome')
+            img = form.cleaned_data.get('imagem')
+            obj = Upload.objects.create(nome=nome,img=img)
+            obj.save()
+            return redirect('estampa')
+    else:
+        form = UploadForm()
+    context['form'] = form
+    return render(request, 'upload.html', context)
+
+# Renderizar template da tela das estampas
+def estampa(request):
+    return render(request, 'estampa.html')
+
+# Faz a Requisição dos Dados para Informar para API
+
+def domockup(request):
+
+    context = {}
+    dados = Upload.objects.filter(usuario=User.objects.get(username=request.user))
+    url = "https://api.mediamodifier.com/mockup/render"
+
+    if request.method == 'POST':
+
+        vermelho =  request.POST['vermelho']
+        verde = request.POST['verde']
+        azul = request.POST['azul']
+
+        payload = {
+            "nr": 97407,
+            "layer_inputs": [
+                {
+                    "id": "128f88df-5adb-479e-bf38-52330542b85b",
+                    "data": f"{dados.img}",
+                    "checked": True
+                },
+                {
+                    "id": "80c73580-bff7-413e-b2c3-88355eaefcf3",
+                    "checked": True,
+                    "color": {
+                        "red": vermelho,
+                        "green": verde,
+                        "blue": azul
+                    }
+                }
+            ]
+        }
+
+        headers = {
+            "Content-Type": "application/json",
+            "api_key": "4cb1d7d9-36d3-45f7-837e-2dd1358081d0"
+        }
+
+        response = requests.request("POST", url, json=payload, headers=headers)
+        return response[base64]
+
+    return render(request, 'mockup.html', context)
+
+def servicos(request):
+    return render(request, 'servicos.html', context)
 
 # def password_reset_request(request):
 #	if request.method == "POST":

@@ -6,32 +6,37 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 
+<style>
+    body {
+          background-image: url("https://imgur.com/Sknluph.png");
+          background-repeat: repeat-y;
+    }
+</style>
+
 {% block content %}
 
     {% if request.user.is_authenticated %}
         <body>
-            <section class="hero is-link is-fullheight">
-              <div class="section is-large">
-                <h1 class="title"> Seja Bem-Vindo,  <span class="has-text-warning">{{ user.username }}</span>! </h1>
-                <h2 class="subtitle"> Você poderá usufruir do Estúdio, a partir daqui!</h2>
-                <a type="button" class="button is-alert is-hovered" href="/perfil/"> Editar Perfil </a>
-                <a type="button" class="button is-danger is-hovered" href="/logouts/"> Logout </a>
-              </div>
-            </section>
+             <div class="section is-large">
+                <h1 class="title has-text-white"> Seja Bem-Vindo,  <span class="has-text-warning">{{ user.username }}</span>! </h1>
+                <h2 class="subtitle has-text-white" > Você poderá usufruir do Estúdio, a partir daqui!</h2>
+                <a type="button" class="button is-warning has-text-black is-halfheight" href="{% url 'estampa' %}"> Acesse aqui a página </a>
+                <br> <br>
+                <a type="button" class="button is-white has-text-black is-hovered" href="/perfil/"> Alt Perfil </a>
+                <a type="button" class="button is-dark has-text-white is-hovered" href="/logouts/"> Logout </a>
+             </div>
         </body>
 
     {% else %}
         <body>
-            <section class="hero is-danger is-fullheight">
-              <div class="hero-body">
+             <div class="hero-body">
                 <h1 class="title">
                   Usuário Desconhecido :/
                 </h1>
                 <p class="subtitle">
                   Você deve <strong>logar</strong> no site para poder usufruir dos benefícios!
                 </p>
-              </div>
-            </section>
+             </div>
         </body>
 
     {% endif %}
